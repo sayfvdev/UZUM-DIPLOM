@@ -12,7 +12,7 @@ export interface User {
 
 
 export interface Product {
-  quantity?: number; // Теперь quantity необязателен
+  quantity?: number;
   id: string;
   title: string;
   description: string;

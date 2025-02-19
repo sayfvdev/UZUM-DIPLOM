@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const totalContainer = document.createElement("div");
         totalContainer.classList.add("total-container");
 
-        // Глобальные переменные, чтобы не искать их в DOM
         const totalItemsElement = document.createElement("p");
         totalItemsElement.id = "total-items";
         totalItemsElement.textContent = "Итого товаров: 0";
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return emptyContainer;
     }
 
-    // Глобальные переменные
     let totalItemsElement: HTMLParagraphElement;
     let totalPriceElement: HTMLHeadingElement;
     let checkoutButton: HTMLButtonElement;
@@ -136,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
             totalItems += product.quantity || 1;
         });
 
-        // Обновляем глобальные элементы
         totalItemsElement = document.getElementById("total-items") as HTMLParagraphElement;
         totalPriceElement = document.getElementById("total-price") as HTMLHeadingElement;
         checkoutButton = document.getElementById("checkout-button") as HTMLButtonElement;
@@ -144,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (totalItemsElement) totalItemsElement.textContent = `Итого товаров: ${totalItems}`;
         if (totalPriceElement) totalPriceElement.textContent = `${totalPrice.toLocaleString()} сум`;
 
-        // Пересоздаем обработчики кнопок
         document.querySelectorAll(".decrease, .increase, .remove").forEach((button) => {
             const newButton = button.cloneNode(true) as HTMLButtonElement;
             button.replaceWith(newButton);
@@ -153,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", (event) => {
                 const index = parseInt((event.target as HTMLElement).dataset.index || "-1", 10);
                 
-                // Проверяем, существует ли объект в массиве
                 if (index >= 0 && index < cart.length && cart[index]) {
                     if (cart[index].quantity && cart[index].quantity > 1) {
                         cart[index].quantity--;
@@ -171,9 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener("click", (event) => {
                 const index = parseInt((event.target as HTMLElement).dataset.index || "-1", 10);
                 
-                // Проверяем, существует ли объект в массиве
                 if (index >= 0 && index < cart.length && cart[index]) {
-                    cart[index].quantity = (cart[index].quantity || 1) + 1; // Гарантируем, что quantity всегда число
+                    cart[index].quantity = (cart[index].quantity || 1) + 1; 
                     localStorage.setItem("cart", JSON.stringify(cart));
                     updateCartUI();
                 }

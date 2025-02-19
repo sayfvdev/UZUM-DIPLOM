@@ -69,11 +69,6 @@ function updateUserDiv(): void {
     const userDiv = document.querySelector(".user");
 
     if (user && userDiv) {
-        // userDiv.innerHTML = `
-        //     <a href="/src/Pages/Profile/profile.html">${user.name}</a>
-        //     <button id="logoutBtn" class="logout-btn">Выйти</button>
-        // `;
-
         document.getElementById("logoutBtn")?.addEventListener("click", logoutUser);
     }
 }
