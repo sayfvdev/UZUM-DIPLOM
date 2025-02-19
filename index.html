@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <link rel="stylesheet" href="./src/style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Spray+Paint&family=Rubik+Wet+Paint&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="main-container"></div>
+    <div id="loginModal"></div>
+    <section class="promo">
+      <div class="carousel">
+        <button class="carousel__button carousel__button--prev"><img src="./icons/arrow-right-circle 1.svg"
+            alt=""></button>
+        <div class="carousel__slides">
+          <div class="carousel__slide"></div>
+          <div class="carousel__slide"></div>
+          <div class="carousel__slide"></div>
+          <div class="carousel__slide"></div>
+        </div>
+        <button class="carousel__button carousel__button--next"><img src="./icons/arrow-left-circle 2.svg"
+            alt=""></button>
+        <div class="carousel__indicators">
+          <span class="carousel__indicator" data-slide="0"></span>
+          <span class="carousel__indicator" data-slide="1"></span>
+          <span class="carousel__indicator" data-slide="2"></span>
+        </div>
+      </div>
+    </section>
+    <section class="item_card">
+      <div id="app">
+        <h1>Популярные</h1>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

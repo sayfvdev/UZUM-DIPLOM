@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование профиля</title>
+    <link rel="stylesheet" href="./profile.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Spray+Paint&family=Rubik+Wet+Paint&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="main-container"></div>
+    <div class="profile-container-wrapper">
+        <div class="profile-container">
+            <h2 class="profile-title">Мои данные</h2>
+            <form class="profile-form">
+                <div class="profile-form-row">
+                    <div class="profile-form-group">
+                        <label for="lastname" class="profile-label">Фамилия *</label>
+                        <input type="text" id="lastname" class="profile-input" placeholder="Сайфуллаев">
+                    </div>
+                    <div class="profile-form-group">
+                        <label for="firstname" class="profile-label">Имя *</label>
+                        <input type="text" id="firstname" class="profile-input" placeholder="Жасур">
+                    </div>
+                    <div class="profile-form-group">
+                        <label for="middlename" class="profile-label">Отчество</label>
+                        <input type="text" id="middlename" class="profile-input">
+                    </div>
+                </div>
+                <div class="profile-form-row">
+                    <div class="profile-form-group">
+                        <label for="birthdate" class="profile-label">Дата рождения</label>
+                        <input type="date" id="birthdate" class="profile-input">
+                    </div>
+                    <div class="profile-form-group profile-gender-group">
+                        <label class="profile-label">Пол</label>
+                        <div class="profile-gender-options">
+                            <button type="button" class="profile-gender-btn" id="male">Мужской</button>
+                            <button type="button" class="profile-gender-btn" id="female">Женский</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-form-row">
+                    <div class="profile-form-group">
+                        <label for="email" class="profile-label">Электронная почта *</label>
+                        <input type="email" id="email" class="profile-input">
+                    </div>
+                    <div class="profile-form-group">
+                        <label for="phone" class="profile-label">Номер телефона *</label>
+                        <input type="tel" id="phone" class="profile-input" placeholder="+998 90 602-40-47">
+                    </div>
+                </div>
+                <button type="submit" class="profile-save-btn" id="saveProfile">Сохранить</button>
+                <p class="profile-logout" id="logoutBtn">Выйти из системы</p>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="./profile.ts"></script>
+</body>
+
+</html>
