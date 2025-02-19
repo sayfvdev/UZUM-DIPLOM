@@ -11,8 +11,8 @@ export interface User {
 }
 
 
-
 export interface Product {
+  quantity?: number; // Теперь quantity необязателен
   id: string;
   title: string;
   description: string;
@@ -23,7 +23,7 @@ export interface Product {
   salePercentage: number;
   media: string[];
   type: string;
-  dioganal?: string | string[]; 
+  dioganal?: string | string[];
 }
 
 

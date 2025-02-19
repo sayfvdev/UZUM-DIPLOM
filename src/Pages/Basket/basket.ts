@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
         totalContainer.classList.add("total-container");
 
         // Глобальные переменные, чтобы не искать их в DOM
-        totalItemsElement = document.createElement("p");
+        const totalItemsElement = document.createElement("p");
         totalItemsElement.id = "total-items";
         totalItemsElement.textContent = "Итого товаров: 0";
 
-        totalPriceElement = document.createElement("h3");
+        const totalPriceElement = document.createElement("h3");
         totalPriceElement.id = "total-price";
         totalPriceElement.textContent = "0 сум";
 
-        checkoutButton = document.createElement("button");
+        const checkoutButton = document.createElement("button");
         checkoutButton.id = "checkout-button";
         checkoutButton.textContent = "Оформить заказ";
         checkoutButton.className = "checkout-button";
@@ -137,52 +137,70 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Обновляем глобальные элементы
-        totalItemsElement.textContent = `Итого товаров: ${totalItems}`;
-        totalPriceElement.textContent = `${totalPrice.toLocaleString()} сум`;
+        totalItemsElement = document.getElementById("total-items") as HTMLParagraphElement;
+        totalPriceElement = document.getElementById("total-price") as HTMLHeadingElement;
+        checkoutButton = document.getElementById("checkout-button") as HTMLButtonElement;
+
+        if (totalItemsElement) totalItemsElement.textContent = `Итого товаров: ${totalItems}`;
+        if (totalPriceElement) totalPriceElement.textContent = `${totalPrice.toLocaleString()} сум`;
 
         // Пересоздаем обработчики кнопок
         document.querySelectorAll(".decrease, .increase, .remove").forEach((button) => {
             const newButton = button.cloneNode(true) as HTMLButtonElement;
             button.replaceWith(newButton);
         });
-
         document.querySelectorAll(".decrease").forEach((button) => {
             button.addEventListener("click", (event) => {
-                const index = parseInt((event.target as HTMLElement).dataset.index || "0", 10);
-                if (cart[index].quantity > 1) {
-                    cart[index].quantity--;
-                } else {
-                    cart.splice(index, 1);
+                const index = parseInt((event.target as HTMLElement).dataset.index || "-1", 10);
+                
+                // Проверяем, существует ли объект в массиве
+                if (index >= 0 && index < cart.length && cart[index]) {
+                    if (cart[index].quantity && cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartUI();
                 }
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartUI();
             });
         });
+        
 
         document.querySelectorAll(".increase").forEach((button) => {
             button.addEventListener("click", (event) => {
-                const index = parseInt((event.target as HTMLElement).dataset.index || "0", 10);
-                cart[index].quantity++;
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartUI();
+                const index = parseInt((event.target as HTMLElement).dataset.index || "-1", 10);
+                
+                // Проверяем, существует ли объект в массиве
+                if (index >= 0 && index < cart.length && cart[index]) {
+                    cart[index].quantity = (cart[index].quantity || 1) + 1; // Гарантируем, что quantity всегда число
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartUI();
+                }
             });
         });
+        
 
         document.querySelectorAll(".remove").forEach((button) => {
             button.addEventListener("click", (event) => {
                 const index = parseInt((event.target as HTMLElement).dataset.index || "0", 10);
-                cart.splice(index, 1);
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartUI();
+                if (cart[index]) {
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartUI();
+                }
             });
         });
     }
 
-    checkoutButton.addEventListener("click", () => {
-        alert("Заказ оформлен!");
-        localStorage.removeItem("cart");
-        updateCartUI();
-    });
+    checkoutButton = document.getElementById("checkout-button") as HTMLButtonElement;
+    if (checkoutButton) {
+        checkoutButton.addEventListener("click", () => {
+            alert("Заказ оформлен!");
+            localStorage.removeItem("cart");
+            updateCartUI();
+        });
+    }
 
     updateCartUI();
 });
